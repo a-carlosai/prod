@@ -35,4 +35,3 @@ ${GCLOUD} compute instances create \
 
 trap cleanup EXIT
 
-
