@@ -4,7 +4,7 @@ steps:
 images:
 - 'gcr.io/$PROJECT_ID/remote-prd1'
 tags: ['cloud-builders-prd']
-steps1:
+steps:
   waitFor: ["-"]
   env:
     # Use Container Optimized OS
