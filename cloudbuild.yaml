@@ -1,6 +1,11 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/remote-prd', '.' ]
-images:
-- 'gcr.io/$PROJECT_ID/remote-prd'
-tags: ['cloud-builders-community']
+- name: gcr.io/$PROJECT_ID/remote-prd
+  waitFor: ["-"]
+  env:
+    # Use Container Optimized OS
+    # https://cloud.google.com/container-optimized-os/docs/
+    - INSTANCE_ARGS=--image-project centos-cloud --image-family centos-7 --zone=us-east1-b --subnet=rede-gce
+    - ZONE=us-east1-b
+    - USERNAME=ailteds01
+    # Run a script from the local build context in a Docker container
+    - COMMAND=docker run -v /home/ailteds01/workspace:/workspace centos:7 bash -xe /workspace/test-scripts/no-op.sh
