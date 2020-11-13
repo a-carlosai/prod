@@ -1,5 +1,9 @@
 steps:
 - name: gcr.io/$PROJECT_ID/remote-prd
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/remote-prd', '.' ]
+images:
+- 'gcr.io/$PROJECT_ID/remote-prd'
+tags: ['cloud-builders-community']
   waitFor: ["-"]
   env:
     # Use Container Optimized OS
